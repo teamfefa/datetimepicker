@@ -17,7 +17,7 @@
 /**
  * @param {jQuery} $
  */
-var datetimepickerFactory = function ($) {
+const datetimepickerFactory = function ($) {
 	'use strict';
 
 	var default_options  = {
@@ -2692,20 +2692,6 @@ var datetimepickerFactory = function ($) {
 		this.style = style;
 	}
 };
-;(function (factory) {
-	if ( typeof define === 'function' && define.amd ) {
-		// AMD. Register as an anonymous module.
-		define(['jquery', 'jquery-mousewheel'], factory);
-	} else if (typeof exports === 'object') {
-		// Node/CommonJS style for Browserify
-		module.exports = factory(require('jquery'));;
-	} else {
-		// Browser globals
-		factory(jQuery);
-	}
-}(datetimepickerFactory));
-
-
 
 /*!
  * jQuery Mousewheel 3.1.13
@@ -2715,18 +2701,7 @@ var datetimepickerFactory = function ($) {
  * http://jquery.org/license
  */
 
-(function (factory) {
-    if ( typeof define === 'function' && define.amd ) {
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        // Node/CommonJS style for Browserify
-        module.exports = factory;
-    } else {
-        // Browser globals
-        factory(jQuery);
-    }
-}(function ($) {
+const mousewheelFactory = function ($) {
 
     var toFix  = ['wheel', 'mousewheel', 'DOMMouseScroll', 'MozMousePixelScroll'],
         toBind = ( 'onwheel' in document || document.documentMode >= 9 ) ?
@@ -2927,4 +2902,9 @@ var datetimepickerFactory = function ($) {
         return special.settings.adjustOldDeltas && orgEvent.type === 'mousewheel' && absDelta % 120 === 0;
     }
 
-}));
+}
+
+module.exports = {
+	mousewheelFactory,
+	datetimepickerFactory
+}
